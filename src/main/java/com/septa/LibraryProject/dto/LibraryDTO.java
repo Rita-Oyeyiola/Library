@@ -5,13 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+import java.time.LocalDateTime;
+
 public class LibraryDTO {
-
-    @Id
-
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String title;
 
@@ -19,28 +15,13 @@ public class LibraryDTO {
 
     private int ISBN;
 
-    private int createdDate;
-
-    private int updatedDate;
-
     public LibraryDTO() {
     }
 
-    public LibraryDTO(Long id, String title, String author, int ISBN, int createdDate, int updatedDate) {
-        this.id = id;
+    public LibraryDTO( String title, String author, int ISBN) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -67,31 +48,13 @@ public class LibraryDTO {
         this.ISBN = ISBN;
     }
 
-    public int getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(int createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public int getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(int updatedDate) {
-        this.updatedDate = updatedDate;
-    }
 
     @Override
     public String toString() {
         return "LibraryController{" +
-                "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", ISBN=" + ISBN +
-                ", createdDate=" + createdDate +
-                ", updatedDate=" + updatedDate +
                 '}';
     }
 }

@@ -13,40 +13,29 @@ public class LibraryService {
     public LibraryService(LibraryRepository libraryRepository) {
         this.libraryRepository = libraryRepository;
     }
-
-    public Object AddBook(LibraryDTO libraryDTO){
+    public Object CreateBook(LibraryDTO libraryDTO){
         Library library = new Library();
 
-        library.setId(libraryDTO.getId());
         library.setTitle(libraryDTO.getTitle());
         library.setAuthor(libraryDTO.getAuthor());
         library.setISBN(libraryDTO.getISBN());
-        library.setCreatedDate(libraryDTO.getCreatedDate());
-        library.setUpdatedDate(libraryDTO.getUpdatedDate());
 
         return libraryRepository.save(library);
     }
-    public Object FetchAllBooks() {return libraryRepository.findAll();}
+    public Object getLibrary() {return libraryRepository.findAll();}
 
-    public Object updateBook (LibraryDTO libraryDTO, Long id){
+    public Object updateBook (LibraryDTO libraryDTO, long id){
         Library library = libraryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("book not found"));
 
-    library.setId(libraryDTO.getId());
     library.setTitle(libraryDTO.getTitle());
     library.setAuthor(libraryDTO.getTitle());
     library.setISBN(libraryDTO.getISBN());
-    library.setCreatedDate(libraryDTO.getCreatedDate());
-    library.setUpdatedDate(libraryDTO.getUpdatedDate());
 
     return libraryRepository.save(library);
     }
 
     public Object DeleteBook (Long id){
-        Library library = libraryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("book not found") );
-
-        libraryRepository.delete(library);
         return "book have been deleted";
 
     }

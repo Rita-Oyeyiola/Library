@@ -1,8 +1,18 @@
 package com.septa.LibraryProject.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+
+@Entity
 public class Library {
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     private String title;
 
@@ -10,14 +20,18 @@ public class Library {
 
     private int ISBN;
 
-    private int createdDate;
+    @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdDate;
 
-    private int updatedDate;
+    @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updatedDate;
 
     public Library() {
     }
 
-    public Library(Long id, String title, String author, int ISBN, int createdDate, int updatedDate) {
+    public Library(Long id, String title, String author, int ISBN, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -58,19 +72,19 @@ public class Library {
         this.ISBN = ISBN;
     }
 
-    public int getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(int createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
 
-    public int getUpdatedDate() {
+    public LocalDateTime getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(int updatedDate) {
+    public void setUpdatedDate(LocalDateTime updatedDate) {
         this.updatedDate = updatedDate;
     }
 
